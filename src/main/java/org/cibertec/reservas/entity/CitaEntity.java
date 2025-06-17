@@ -24,4 +24,16 @@ public class CitaEntity {
     @JoinColumn(name = "id_especialidad")
     private EspecialidadEntity especialidad;
 
+    @Column(name = "fecha")
+    private String fecha;
+
+    @Column(name = "hora")
+    private String hora;
+
+    @Column(name = "nota")
+    private String nota;
+
+    @Column(name = "estado")
+    private String estado;
+
 }

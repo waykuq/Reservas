@@ -6,15 +6,12 @@ import jakarta.persistence.*;
 @Data
 @Entity
 @Table(name="Usuario")
-public class UsuarioEntity {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class UsuarioEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
     private Integer id;
-
-    @ManyToOne
-    @JoinColumn(name = "id_tipo_usuario")
-    private TipoUsuarioEntity tipo_usuario;
 
     @Column(name = "dni")
     private String dni;
