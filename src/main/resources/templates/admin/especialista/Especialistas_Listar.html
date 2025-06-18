@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Especialistas - Listar</title>
+    <style>
+        body {
+          font-family: 'Segoe UI', sans-serif;
+          background-color: #f9f9f9;
+          padding: 40px;
+        }
+
+        h1 {
+          color: #333;
+        }
+
+        .btn-agregar {
+          display: inline-block;
+          margin-bottom: 20px;
+          padding: 10px 20px;
+          background-color: #007BFF;
+          color: white;
+          text-decoration: none;
+          border-radius: 5px;
+        }
+
+        .btn-agregar:hover {
+          background-color: #0056b3;
+        }
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          background-color: white;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        th, td {
+          padding: 12px;
+          border-bottom: 1px solid #ddd;
+          text-align: left;
+        }
+
+        th {
+          background-color: #f0f0f0;
+        }
+
+        .acciones button {
+          padding: 6px 12px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 0.9em;
+          margin-right: 5px;
+        }
+
+        .modificar {
+          background-color: #17a2b8;
+          color: white;
+        }
+
+        .eliminar {
+          background-color: #dc3545;
+          color: white;
+        }
+
+        .mensaje {
+          margin-top: 20px;
+          font-weight: bold;
+          color: green;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Lista de Especialistas</h1>
+<a href="agregar.html" class="btn-agregar">➕ Agregar Especialista</a>
+
+<table id="tablaEspecialistas">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Contenido dinámico con JS -->
+    </tbody>
+</table>
+
+<div class="mensaje" id="mensaje"></div>
+
+<script>
+    const especialistas = [
+      { id: 1, nombre: "Juan Pérez", email: "juan@example.com" },
+      { id: 2, nombre: "Laura Castillo", email: "laura@salud.com" },
+      { id: 3, nombre: "Carlos Mejía", email: "carlos@terapia.com" }
+    ];
+
+    const tbody = document.querySelector("#tablaEspecialistas tbody");
+    const mensaje = document.getElementById("mensaje");
+
+    function cargarEspecialistas() {
+      tbody.innerHTML = "";
+      especialistas.forEach(especialista => {
+        const fila = document.createElement("tr");
+        fila.innerHTML = `
+          <td>${especialista.id}</td>
+          <td>${especialista.nombre}</td>
+          <td>${especialista.email}</td>
+          <td class="acciones">
+            <button class="modificar" onclick="modificarEspecialista(${especialista.id})">Modificar</button>
+            <button class="eliminar" onclick="eliminarEspecialista(${especialista.id})">Eliminar</button>
+          </td>
+        `;
+        tbody.appendChild(fila);
+      });
+    }
+
+    function modificarEspecialista(id) {
+      window.location.href = `modificar.html?id=${id}`;
+    }
+
+    function eliminarEspecialista(id) {
+      if (confirm("¿Estás seguro de eliminar este especialista?")) {
+        const index = especialistas.findIndex(e => e.id === id);
+        if (index !== -1) {
+          especialistas.splice(index, 1);
+          cargarEspecialistas();
+          mensaje.textContent = "Especialista eliminado correctamente ✅";
+          setTimeout(() => mensaje.textContent = "", 3000);
+        }
+      }
+    }
+
+    cargarEspecialistas();
+</script>
+
+</body>
+</html>

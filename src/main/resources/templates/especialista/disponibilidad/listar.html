@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Disponibilidad</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container py-5">
+    <h2 class="mb-4 text-center">Mi Disponibilidad</h2>
+    
+    <!-- Botón para agregar disponibilidad -->
+    <div class="mb-3 text-end">
+        <a href="/disponibilidad/nueva" class="btn btn-success">+ Agregar Disponibilidad</a>
+    </div>
+
+    <table class="table table-striped align-middle">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Inicio</th>
+                <th>Fin</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Ejemplo fila estática -->
+            <tr>
+                <td>2025-06-15</td>
+                <td>09:00</td>
+                <td>12:00</td>
+                <td>
+                    <a href="/disponibilidad/editar/1" class="btn btn-primary btn-sm me-2">Editar</a>
+                    <a href="/disponibilidad/eliminar/1" class="btn btn-danger btn-sm" onclick="return confirm('¿Eliminar esta disponibilidad?');">Eliminar</a>
+                </td>
+            </tr>
+
+            <!-- Aquí puedes poner filas dinámicas con Thymeleaf o tu motor de plantillas -->
+            <!-- Ejemplo con Thymeleaf:
+            <tr th:each="disp : ${disponibilidades}">
+                <td th:text="${disp.fecha}">2025-06-15</td>
+                <td th:text="${disp.inicio}">09:00</td>
+                <td th:text="${disp.fin}">12:00</td>
+                <td>
+                    <a th:href="@{/disponibilidad/editar/{id}(id=${disp.id})}" class="btn btn-primary btn-sm me-2">Editar</a>
+                    <a th:href="@{/disponibilidad/eliminar/{id}(id=${disp.id})}" class="btn btn-danger btn-sm"
+                       onclick="return confirm('¿Eliminar esta disponibilidad?');">Eliminar</a>
+                </td>
+            </tr>
+            -->
+        </tbody>
+    </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

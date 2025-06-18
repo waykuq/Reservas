@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Calendario de Reservas</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- FullCalendar CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
+
+    <style>
+        #calendar {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div class="container py-5">
+    <h2 class="mb-4 text-center">Calendario de Reservas</h2>
+    <div id="calendar"></div>
+</div>
+
+<!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- FullCalendar JS -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const calendarEl = document.getElementById('calendar');
+
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            locale: 'es',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            events: [
+                // Eventos de ejemplo: tus reservas
+                {
+                    title: 'Reserva 1 - Corte de cabello',
+                    start: '2025-06-15T10:00:00',
+                    end: '2025-06-15T11:00:00',
+                    color: '#28a745' // verde bootstrap
+                },
+                {
+                    title: 'Reserva 2 - Consulta',
+                    start: '2025-06-20T14:00:00',
+                    end: '2025-06-20T15:30:00',
+                    color: '#007bff' // azul bootstrap
+                }
+                // Aquí agregarías más reservas dinámicas
+            ]
+        });
+
+        calendar.render();
+    });
+</script>
+</body>
+</html>

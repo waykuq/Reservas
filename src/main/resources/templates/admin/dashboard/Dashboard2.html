@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Consultoría Psicológica</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <style>
+        body {
+          font-family: 'Segoe UI', sans-serif;
+          background-color: #f0f2f5;
+          padding: 40px;
+          margin: 0;
+        }
+
+        h1 {
+          color: #333;
+          text-align: center;
+        }
+
+        nav {
+          margin-top: 40px;
+          display: flex;
+          justify-content: center;
+          gap: 30px;
+          flex-wrap: wrap;
+        }
+
+        .card-link {
+          display: block;
+          text-decoration: none;
+          background-color: #ffffff;
+          padding: 30px 20px;
+          width: 250px;
+          text-align: center;
+          border-radius: 10px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+          transition: transform 0.3s, box-shadow 0.3s;
+          color: #333;
+        }
+
+        .card-link:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+          background-color: #f9f9f9;
+        }
+
+        .card-link span {
+          display: block;
+          font-size: 1.2em;
+          margin-top: 10px;
+        }
+
+        .icon {
+          font-size: 40px;
+          color: #007BFF;
+        }
+
+        footer {
+          margin-top: 60px;
+          text-align: center;
+          font-size: 0.9em;
+          color: #888;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Dashboard del Administrador</h1>
+
+<nav>
+    <a href="clientes/listar.html" class="card-link">
+        <div class="icon">👤</div>
+        <span>Mantenimiento de Clientes</span>
+    </a>
+    <a href="especialistas/listar.html" class="card-link">
+        <div class="icon">🧑‍⚕️</div>
+        <span>Mantenimiento de Especialistas</span>
+    </a>
+    <a href="especialidades/listar.html" class="card-link">
+        <div class="icon">📋</div>
+        <span>Mantenimiento de Especialidades</span>
+    </a>
+</nav>
+
+<footer>
+    Consultoría Psicológica &copy; 2025
+</footer>
+
+<script>
+
+    window.onload = function () {
+      console.log("¡Bienvenido al Dashboard del Administrador!");
+    };
+</script>
+
+</body>
+</html>

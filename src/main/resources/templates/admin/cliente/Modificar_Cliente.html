@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Modificar Cliente</title>
+    <style>
+        body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          background: #f4f6f8;
+          padding: 40px;
+          max-width: 450px;
+          margin: auto;
+        }
+        h1 {
+          color: #333;
+          text-align: center;
+        }
+        form {
+          background: white;
+          padding: 25px;
+          border-radius: 8px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        label {
+          display: block;
+          margin-bottom: 6px;
+          font-weight: 600;
+          margin-top: 15px;
+        }
+        input[type="text"],
+        input[type="email"] {
+          width: 100%;
+          padding: 8px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 1em;
+          box-sizing: border-box;
+          transition: border-color 0.3s;
+        }
+        input[type="text"]:read-only {
+          background: #eee;
+          cursor: not-allowed;
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+          border-color: #007bff;
+          outline: none;
+        }
+        input[type="submit"] {
+          margin-top: 25px;
+          width: 100%;
+          padding: 10px;
+          background-color: #007bff;
+          border: none;
+          color: white;
+          font-size: 1.1em;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+          background-color: #0056b3;
+        }
+        .mensaje {
+          margin-top: 20px;
+          text-align: center;
+          font-weight: bold;
+        }
+        .error {
+          color: #dc3545;
+        }
+        .exito {
+          color: #28a745;
+        }
+    </style>
+</head>
+<body>
+<h1>Modificar Cliente</h1>
+<form id="formModificar">
+    <label for="id">ID:</label>
+    <input type="text" name="id" id="id" value="1" readonly />
+
+    <label for="nombre">Nombre:</label>
+    <input type="text" name="nombre" id="nombre" value="Juan Pérez" required />
+
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" value="juan@example.com" required />
+
+    <input type="submit" value="Actualizar" />
+</form>
+
+<div id="mensaje" class="mensaje"></div>
+
+<script>
+    const form = document.getElementById('formModificar');
+    const mensaje = document.getElementById('mensaje');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const nombre = form.nombre.value.trim();
+      const email = form.email.value.trim();
+
+      // Validación simple
+      if (nombre.length < 3) {
+        mensaje.textContent = 'El nombre debe tener al menos 3 caracteres.';
+        mensaje.className = 'mensaje error';
+        form.nombre.focus();
+        return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        mensaje.textContent = 'Por favor, ingresa un email válido.';
+        mensaje.className = 'mensaje error';
+        form.email.focus();
+        return;
+      }
+
+          mensaje.textContent = 'Cliente actualizado correctamente ✅';
+      mensaje.className = 'mensaje exito';
+
+
+           form.querySelector('input[type="submit"]').disabled = true;
+    });
+</script>
+</body>
+</html>

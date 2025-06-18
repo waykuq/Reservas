@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes - Listar</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #f5f5f5;
+          padding: 30px;
+        }
+
+        h1 {
+          color: #333;
+        }
+
+        .btn-agregar {
+          display: inline-block;
+          margin-bottom: 20px;
+          padding: 10px 15px;
+          background-color: #007BFF;
+          color: white;
+          text-decoration: none;
+          border-radius: 4px;
+        }
+
+        .btn-agregar:hover {
+          background-color: #0056b3;
+        }
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          background-color: white;
+        }
+
+        th, td {
+          padding: 12px;
+          border: 1px solid #ccc;
+          text-align: left;
+        }
+
+        th {
+          background-color: #f0f0f0;
+        }
+
+        .acciones a {
+          margin-right: 10px;
+          text-decoration: none;
+          color: #007BFF;
+        }
+
+        .acciones a:hover {
+          text-decoration: underline;
+        }
+
+        .mensaje {
+          margin-top: 20px;
+          color: green;
+          font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Lista de Clientes</h1>
+<a href="agregar.html" class="btn-agregar">➕ Agregar Cliente</a>
+
+<table id="tablaClientes">
+    <thead>
+    <tr><th>ID</th><th>Nombre</th><th>Email</th><th>Acciones</th></tr>
+    </thead>
+    <tbody>
+    <!-- Contenido dinámico -->
+    </tbody>
+</table>
+
+<div class="mensaje" id="mensaje"></div>
+
+<script>
+    const clientes = [
+      { id: 1, nombre: "Juan Pérez", email: "juan@example.com" },
+      { id: 2, nombre: "Ana García", email: "ana@example.com" },
+      { id: 3, nombre: "Luis Torres", email: "luis@example.com" }
+    ];
+
+    const tbody = document.querySelector("#tablaClientes tbody");
+    const mensaje = document.getElementById("mensaje");
+
+    function cargarClientes() {
+      tbody.innerHTML = "";
+      clientes.forEach(cliente => {
+        const fila = document.createElement("tr");
+
+        fila.innerHTML = `
+          <td>${cliente.id}</td>
+          <td>${cliente.nombre}</td>
+          <td>${cliente.email}</td>
+          <td class="acciones">
+            <a href="modificar.html?id=${cliente.id}">Modificar</a>
+            <a href="#" onclick="eliminarCliente(${cliente.id})">Eliminar</a>
+          </td>
+        `;
+
+        tbody.appendChild(fila);
+      });
+    }
+
+    function eliminarCliente(id) {
+      const confirmado = confirm("¿Estás seguro de que deseas eliminar este cliente?");
+      if (confirmado) {
+        const index = clientes.findIndex(c => c.id === id);
+        if (index !== -1) {
+          clientes.splice(index, 1);
+          cargarClientes();
+          mensaje.textContent = "Cliente eliminado correctamente ✅";
+          setTimeout(() => mensaje.textContent = "", 3000);
+        }
+      }
+    }
+
+    cargarClientes();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar Cliente</title>
+    <style>
+        body {
+          font-family: 'Segoe UI', sans-serif;
+          background-color: #f4f4f4;
+          padding: 40px;
+          text-align: center;
+        }
+
+        h1 {
+          color: #d9534f;
+        }
+
+        p {
+          font-size: 1.2em;
+          color: #333;
+        }
+
+        .botones {
+          margin-top: 30px;
+        }
+
+        .botones input[type="submit"],
+        .botones a {
+          display: inline-block;
+          margin: 0 10px;
+          padding: 10px 20px;
+          font-size: 1em;
+          border-radius: 5px;
+          text-decoration: none;
+          cursor: pointer;
+          transition: background-color 0.2s ease-in-out;
+        }
+
+        .botones input[type="submit"] {
+          background-color: #d9534f;
+          color: white;
+          border: none;
+        }
+
+        .botones input[type="submit"]:hover {
+          background-color: #c9302c;
+        }
+
+        .botones a {
+          background-color: #6c757d;
+          color: white;
+        }
+
+        .botones a:hover {
+          background-color: #5a6268;
+        }
+
+        .mensaje {
+          margin-top: 25px;
+          font-weight: bold;
+          color: green;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Eliminar Cliente</h1>
+<p>¿Estás seguro de que deseas eliminar al cliente <strong>Juan Pérez</strong>?</p>
+
+<form id="formEliminar">
+    <div class="botones">
+        <input type="submit" value="Sí, eliminar">
+        <a href="listar.html">Cancelar</a>
+    </div>
+</form>
+
+<div class="mensaje" id="mensaje"></div>
+
+<script>
+    document.getElementById('formEliminar').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+
+      document.getElementById('mensaje').textContent = "Cliente eliminado exitosamente ✅";
+
+            document.querySelector('input[type="submit"]').disabled = true;
+      setTimeout(() => {
+        window.location.href = "listar.html"; // Redirige tras unos segundos
+      }, 2000);
+    });
+</script>
+
+</body>
+</html>

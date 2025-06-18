@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Agregar Cliente</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      max-width: 400px;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .mensaje {
+      margin-top: 15px;
+      color: green;
+      font-weight: bold;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Agregar Nuevo Cliente</h1>
+
+<form id="clienteForm">
+  <label for="nombre">Nombre:</label>
+  <input type="text" id="nombre" name="nombre">
+  <div id="errorNombre" class="error"></div>
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email">
+  <div id="errorEmail" class="error"></div>
+
+  <input type="submit" value="Guardar">
+</form>
+
+<div class="mensaje" id="mensaje"></div>
+
+<script>
+  document.getElementById('clienteForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita que se recargue la página
+
+    // Limpiar mensajes anteriores
+    document.getElementById('errorNombre').textContent = '';
+    document.getElementById('errorEmail').textContent = '';
+    document.getElementById('mensaje').textContent = '';
+
+    // Obtener valores
+    const nombre = document.getElementById('nombre').value.trim();
+    const email = document.getElementById('email').value.trim();
+
+    let valido = true;
+
+    // Validación
+    if (nombre === '') {
+      document.getElementById('errorNombre').textContent = 'El nombre es obligatorio.';
+      valido = false;
+    }
+
+    if (email === '') {
+      document.getElementById('errorEmail').textContent = 'El correo es obligatorio.';
+      valido = false;
+    } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+      document.getElementById('errorEmail').textContent = 'Formato de correo no válido.';
+      valido = false;
+    }
+
+    if (valido) {
+
+      document.getElementById('mensaje').textContent = 'Cliente agregado correctamente 🎉';
+      document.getElementById('clienteForm').reset();
+    }
+  });
+</script>
+
+</body>
+</html>
