@@ -4,14 +4,16 @@ import java.util.List;
 
 import org.cibertec.reservas.service.GenericService;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class GenericServiceImpl<T, ID> implements GenericService<T, ID> {
 
     protected JpaRepository<T, ID> repository;
 
-    public GenericServiceImpl(JpaRepository<T, ID> repository) {
-        this.repository = repository;
-    }
+//    public GenericServiceImpl(JpaRepository<T, ID> repository) {
+//        this.repository = repository;
+//    }
 
     @Override
     public T getById(ID id) {
