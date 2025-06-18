@@ -1,6 +1,7 @@
 package org.cibertec.reservas.repository;
 
 import org.cibertec.reservas.entity.CitaEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CitaRepository extends GenericRepository<CitaEntity, Integer> {
+public interface CitaRepository extends JpaRepository<CitaEntity, Integer> {
 }
