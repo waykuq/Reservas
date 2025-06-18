@@ -5,6 +5,8 @@ import org.cibertec.reservas.service.UsuarioService;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 public class UsuarioServiceImpl extends GenericServiceImpl<UsuarioEntity, Integer> implements UsuarioService {
 
@@ -15,5 +17,13 @@ public class UsuarioServiceImpl extends GenericServiceImpl<UsuarioEntity, Intege
 //	public void disable(Integer id) {
 //		//repositorio.desactivar(id);
 //	}
+
+	@Override
+	public void create(UsuarioEntity usuario) {
+		if (usuario.getFecha_inscripcion() == null) {
+			usuario.setFecha_inscripcion(LocalDate.now());
+		}
+		repository.save(usuario);
+	}
 
 }

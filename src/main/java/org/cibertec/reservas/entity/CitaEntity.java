@@ -2,6 +2,8 @@ package org.cibertec.reservas.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Data
 @Entity
@@ -25,15 +27,15 @@ public class CitaEntity {
     private EspecialidadEntity especialidad;
 
     @Column(name = "fecha")
-    private String fecha;
+    private LocalDate fecha;
 
     @Column(name = "hora")
-    private String hora;
+    private LocalTime hora;
 
     @Column(name = "nota")
     private String nota;
 
     @Column(name = "estado")
     private String estado;
-
+    // Solo acepta estos valores 'Programada', 'Reprogramada', 'Completada', 'Cancelada'
 }

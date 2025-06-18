@@ -1,7 +1,9 @@
 package org.cibertec.reservas.entity;
 
 import jakarta.persistence.*;
-        import lombok.Data;
+import lombok.Data;
+import java.time.LocalDate;
+
 
 @Data
 @Entity
@@ -32,9 +34,9 @@ public abstract class UsuarioEntity {
     private String telefono;
 
     @Column(name = "fecha_inscripcion")
-    private String fecha_inscripcion;
+    private LocalDate fecha_inscripcion;
 
     @Column(name = "estado")
-    private String estado;
+    private Boolean estado;
 
 }
